@@ -20,7 +20,8 @@
 
 <p><a href="/lab4/personList">PersonListServlet</a></p>
 <!--Zad 2
-Działa tak samo
+<c:out value="${imie}"/> - dla tego wypisze dokładnie to samo co się wpisało
+${imie} - dla tego zedytuje kod html 
 -->
 
 </body>

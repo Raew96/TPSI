@@ -10,9 +10,11 @@
 <html>
 <head>
     <c:forEach items="${lista}" var="obj">
-        <p>
-        ${obj.getFirstName()} ${obj.getLastName()}
-        </p>
+        <table border="4">
+            <tr>
+                <td>${obj.getFirstName()}</td> <td>${obj.getLastName()}</td> <td>${obj.getEmailAddress()}</td>
+            </tr>
+        </table>
     </c:forEach>
 </head>
 <body>
