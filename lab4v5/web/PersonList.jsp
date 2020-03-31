@@ -10,7 +10,7 @@
 <html>
 <head>
     <table border="4">
-        <h1><tr><td>Imie</td><td>Nazwisko</td><td>Email</td></tr></h1>
+        <tr><th>Imie</th><th>Nazwisko</th><th>Email</th></tr>
     <c:forEach items="${lista}" var="obj">
             <tr>
                 <td>${obj.getFirstName()}</td> <td>${obj.getLastName()}</td> <td>${obj.getEmailAddress()}</td>
