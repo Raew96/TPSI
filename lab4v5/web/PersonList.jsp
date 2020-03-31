@@ -9,13 +9,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <table border="4">
+        <h1><tr><td>Imie</td><td>Nazwisko</td><td>Email</td></tr></h1>
     <c:forEach items="${lista}" var="obj">
-        <table border="4">
             <tr>
                 <td>${obj.getFirstName()}</td> <td>${obj.getLastName()}</td> <td>${obj.getEmailAddress()}</td>
             </tr>
-        </table>
     </c:forEach>
+        </table>
 </head>
 <body>
 
