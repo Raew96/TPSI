@@ -17,7 +17,7 @@ public class ServletLab5 extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int counter=1;
+        int counter=0;
         HttpSession session = request.getSession();
         if(session.getAttribute("counter") == null)
         {
@@ -29,8 +29,8 @@ public class ServletLab5 extends HttpServlet {
         {
             counter = (int) session.getAttribute("counter");
             counter++;
-            session.setAttribute("counter", counter);
         }
+        session.setAttribute("counter", counter);
         request.getRequestDispatcher("lab5.jsp").forward(request, response);
     }
 
@@ -47,18 +47,17 @@ public class ServletLab5 extends HttpServlet {
         if(session.getAttribute("counter") == null)
         {
             ArrayList<Student> l = new ArrayList<Student>();
-            session.setAttribute("counter", counter);
             session.setAttribute("l", l);
         }
         else
         {
             counter = (int) session.getAttribute("counter");
             counter++;
-            session.setAttribute("counter", counter);
-            ArrayList<Student> elo = (ArrayList<Student>)session.getAttribute("l");
-            elo.add(new Student(firstName, lastName, emailAddress, groupId));
-            session.setAttribute("l", elo);
         }
+        session.setAttribute("counter", counter);
+        ArrayList<Student> elo = (ArrayList<Student>)session.getAttribute("l");
+        elo.add(new Student(firstName, lastName, emailAddress, groupId));
+        session.setAttribute("l", elo);
         request.getRequestDispatcher("lab5.jsp").forward(request, response);
     }
 }
