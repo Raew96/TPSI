@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Spring i Thymeleaf: lista pracowników</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+        
+        <style>
+            img.empPhoto {
+                width: 300px;
+            }
+            .fired {
+                color: firebrick;
+            }
+            .base
+            {
+                color: black;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid" th:inline="text">
+            <h1>Pan Prezes</h1>
+            <p>
+                <b>
+                    <span th:text='|${boss.firstName} ${boss.lastName}|'></span>
+                </b>
+            </p>
+            <img th:src="${boss.photoUrl}" class="empPhoto" 
+                 src="http://via.placeholder.com/250x250"/>
+
+            <h1>Pracownicy firmy</h1>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Lp</th>
+                    <th>Imię i nazwisko</th>
+                    <th>Stanowisko</th>
+                    <th>Pensja</th>
+                    <th>Data zatrudnienia</th>
+                    <th>Data zwolnienia</th>
+                    <th>Umiejętności</th>
+                    <th>Uwagi</th>
+                    <th>Zdjęcie</th>
+                </tr>
+                <tr th:each="emp, iStat : ${employees}" th:classappend="${emp.getDateOfTermination()} ? fired : base">
+                    <td th:text="${iStat.index}+1"></td>
+                    <td th:text='|${emp.firstName} ${emp.lastName}|'></td>
+                    <td th:text="${emp.jobTitle}"></td>
+                    <td th:text="${#numbers.formatDecimal(emp.salary,3,'WHITESPACE',2,'COMMA')}"></td>
+                    <td th:text="${#dates.format(emp.dateOfEmployment, 'dd.MM.yyyy')}"> </td>
+                    <td th:text="${emp.dateOfTermination != null}?${#dates.format(emp.dateOfTermination, 'dd.MM.yyyy')} : 'wciaż pracuje'"></td>
+                    <td>
+                        <p th:each="skill, iStat2 : ${emp.getSkills()}"
+                           th:text="${iStat2.last != true}? ${skill.getName()}+'('+${skill.getLevel()}+'),' : ${skill.getName()}+'('+${skill.getLevel()}+')' "></p>
+                    </td>
+                    <td> <p th:each="com, iStat3 : ${emp.getComments()}"
+                            th:text="${com}"></p>
+                    </td>
+                    <td>
+                        <img th:src="${emp.getPhotoUrl()}" class="empPhoto"
+                         src="http://via.placeholder.com/250x250"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
