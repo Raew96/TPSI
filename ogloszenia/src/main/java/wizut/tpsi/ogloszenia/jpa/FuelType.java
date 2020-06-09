@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "body_style")
+@Table(name = "fuel_type")
 public class FuelType {
 
     @Id
